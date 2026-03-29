@@ -1,0 +1,39 @@
+{
+  "customer_name": "Jordan Lee",
+  "month": "March 2026",
+  "monthly_income": 6330,
+  "monthly_expenses": 6020,
+  "savings_balance": 900,
+  "transactions": [
+    { "date": "3/1/2026", "description": "Salary Deposit", "category": "income", "amount": 2700, "type": "income", "risk_flag": "low", "reason": "Biweekly salary" },
+    { "date": "3/1/2026", "description": "Starbucks", "category": "coffee", "amount": -6.75, "type": "expense", "risk_flag": "low", "reason": "Routine purchase" },
+
+    { "date": "3/3/2026", "description": "Publix Grocery", "category": "groceries", "amount": -82.10, "type": "expense", "risk_flag": "low", "reason": "Weekly grocery purchase" },
+    { "date": "3/4/2026", "description": "Shell Gas", "category": "gas", "amount": -48.20, "type": "expense", "risk_flag": "low", "reason": "Fuel purchase" },
+
+    { "date": "3/6/2026", "description": "Unknown Vendor", "category": "electronics", "amount": -230, "type": "expense", "risk_flag": "high", "reason": "Out-of-state late-night purchase" },
+    { "date": "3/6/2026", "description": "Unknown Vendor", "category": "electronics", "amount": -245, "type": "expense", "risk_flag": "high", "reason": "Repeated suspicious transaction" },
+
+    { "date": "3/8/2026", "description": "ATM Withdrawal", "category": "cash", "amount": -500, "type": "expense", "risk_flag": "high", "reason": "Large withdrawal unusual location" },
+    { "date": "3/8/2026", "description": "ATM Withdrawal", "category": "cash", "amount": -480, "type": "expense", "risk_flag": "high", "reason": "Multiple withdrawals within minutes" },
+
+    { "date": "3/10/2026", "description": "Netflix", "category": "subscription", "amount": -15.99, "type": "expense", "risk_flag": "low", "reason": "Recurring subscription" },
+
+    { "date": "3/11/2026", "description": "Chipotle", "category": "food", "amount": -13.5, "type": "expense", "risk_flag": "medium", "reason": "Duplicate transaction" },
+    { "date": "3/11/2026", "description": "Chipotle", "category": "food", "amount": -13.5, "type": "expense", "risk_flag": "medium", "reason": "Duplicate charge" },
+
+    { "date": "3/12/2026", "description": "Rent Payment", "category": "housing", "amount": -1500, "type": "expense", "risk_flag": "low", "reason": "Monthly rent" },
+
+    { "date": "3/15/2026", "description": "Freelance Payment", "category": "income", "amount": 930, "type": "income", "risk_flag": "low", "reason": "Freelance income payment" },
+
+    { "date": "3/18/2026", "description": "Unknown Transfer", "category": "transfer", "amount": -650, "type": "expense", "risk_flag": "high", "reason": "Unknown recipient" },
+
+    { "date": "3/21/2026", "description": "Unknown Vendor", "category": "electronics", "amount": -350, "type": "expense", "risk_flag": "high", "reason": "Repeated suspicious merchant" },
+
+    { "date": "3/24/2026", "description": "Amazon", "category": "shopping", "amount": -210, "type": "expense", "risk_flag": "medium", "reason": "Higher than normal spending pattern" },
+
+    { "date": "3/27/2026", "description": "Dunkin", "category": "coffee", "amount": -7.46, "type": "expense", "risk_flag": "low", "reason": "Routine coffee purchase" },
+
+    { "date": "3/30/2026", "description": "Unknown Vendor", "category": "electronics", "amount": -310, "type": "expense", "risk_flag": "high", "reason": "Late-night suspicious purchase" }
+  ]
+}

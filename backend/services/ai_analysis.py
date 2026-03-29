@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 from pathlib import Path
 from dotenv import load_dotenv
@@ -19,26 +20,39 @@ def analyze_with_ai(data):
     }
 
     message = f"""
-You are a financial risk analysis assistant.
+You are a financial risk analysis assistant for a banking dashboard.
 
-Use these rules:
-- High risk if 3 or more warning signs exist
-- Medium risk if 1 or 2 warning signs exist
-- Low risk if no warning signs exist
-- Warning signs include:
-  1. Expenses exceed income
-  2. Credit utilization is above 30%
-  3. Spending spike is above 20%
-  4. Savings are lower than one month of expenses
+Analyze the customer's monthly transactions and provide a concise, evidence-based explanation.
 
-Return a concise JSON response with this exact shape:
+IMPORTANT:
+- Reference specific merchants, dates, and transaction patterns when relevant
+- Mention suspicious merchants, duplicate charges, repeated transfers, unusual withdrawals, and recurring behavior
+- Distinguish between normal recurring activity and suspicious activity
+- Do NOT give vague generic advice
+- Do NOT mention missing data
+- Return only valid JSON
+
+Focus on:
+- repeated suspicious merchants
+- duplicate charges
+- unusual transfers or cash withdrawals
+- recurring spending patterns like coffee, groceries, gas, dining
+- recurring income patterns like salary or freelance payments
+- whether savings appear strong or weak relative to expenses
+- the biggest reasons this customer looks risky or stable
+
+Return ONLY valid JSON in this exact format:
 {{
-  "ai_summary": "short explanation",
-  "ai_recommendations": ["recommendation 1", "recommendation 2", "recommendation 3"]
+  "ai_summary": "2-4 sentence explanation using specific examples from the transactions",
+  "ai_recommendations": [
+    "specific recommendation 1",
+    "specific recommendation 2",
+    "specific recommendation 3"
+  ]
 }}
 
 Customer data:
-{data}
+{json.dumps(data, indent=2)}
 """.strip()
 
     payload = {
@@ -55,9 +69,18 @@ Customer data:
     response.raise_for_status()
 
     raw = response.json()
+    response_text = raw.get("response", "")
 
-    return {
-        "ai_summary": raw.get("response", ""),
-        "ai_recommendations": [],
-        "raw_ai_response": raw
-    }
+    try:
+        parsed = json.loads(response_text)
+        return {
+            "ai_summary": parsed.get("ai_summary", ""),
+            "ai_recommendations": parsed.get("ai_recommendations", []),
+            "raw_ai_response": raw
+        }
+    except json.JSONDecodeError:
+        return {
+            "ai_summary": response_text,
+            "ai_recommendations": [],
+            "raw_ai_response": raw
+        }
