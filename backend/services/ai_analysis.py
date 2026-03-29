@@ -20,23 +20,27 @@ def analyze_with_ai(data):
     }
 
     message = f"""
-You are a financial risk analysis assistant.
+You are a financial risk analysis assistant for a banking dashboard.
 
 Analyze the customer's transactions and provide a clear, evidence-based explanation of their financial behavior.
 
 IMPORTANT:
-- You MUST reference specific transaction patterns when explaining risk
-- Mention actual merchants, dates, or repeated behaviors when relevant
-- Do NOT give generic advice
+- You MUST reference specific merchants, dates, and transaction patterns when relevant
+- Mention suspicious merchants, duplicate charges, repeated transfers, unusual withdrawals, and recurring behavior
+- Distinguish between normal recurring activity and suspicious activity
+- Do NOT give vague generic advice
+- Do NOT mention missing data
+- Return only valid JSON
 
 Focus on:
-- suspicious transactions (e.g., unknown vendors, transfers, withdrawals)
+- suspicious transactions such as unknown vendors, transfers, or withdrawals
 - repeated suspicious merchants
 - duplicate charges
 - unusual transaction timing or clustering
-- recurring spending patterns (coffee, groceries, gas, etc.)
-- recurring income (salary, freelance)
-- overall financial stability (income vs expenses vs savings)
+- recurring spending patterns like coffee, groceries, gas, and dining
+- recurring income patterns like salary or freelance payments
+- overall financial stability including income vs expenses vs savings
+- the biggest reasons this customer looks risky or stable
 
 Good examples of reasoning:
 - "Unknown Vendor appears multiple times (March 6, 21, 30), suggesting repeated suspicious activity"
@@ -44,7 +48,7 @@ Good examples of reasoning:
 - "Chipotle transactions on March 11 appear duplicated"
 - "Recurring Starbucks and grocery purchases appear normal and consistent"
 
-Return ONLY valid JSON:
+Return ONLY valid JSON in this exact format:
 {{
   "ai_summary": "2-4 sentence explanation using specific examples from the transactions",
   "ai_recommendations": [

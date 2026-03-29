@@ -28,17 +28,8 @@ def analyze(input: CustomerInput):
 
     if input.transactions:
         processed = process_transactions([t.model_dump() for t in input.transactions])
-
-        data["monthly_income"] = processed["monthly_income"]
-        data["monthly_expenses"] = processed["monthly_expenses"]
-        data["high_flag_count"] = processed["high_flag_count"]
-        data["medium_flag_count"] = processed["medium_flag_count"]
-        data["largest_expense"] = processed["largest_expense"]
-        data["top_categories"] = processed["top_categories"]
-        data["repeated_suspicious_merchants"] = processed["repeated_suspicious_merchants"]
-        data["duplicate_transactions"] = processed["duplicate_transactions"]
-
-    flagged_transactions = processed["flagged_transactions"]
+        data.update(processed)
+        flagged_transactions = processed.get("flagged_transactions", [])
 
     rule_result = analyze_customer(data)
     ai_result = analyze_with_ai(data)

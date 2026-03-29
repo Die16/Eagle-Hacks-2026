@@ -2,6 +2,7 @@ def process_transactions(transactions):
     income = 0
     expenses = 0
     flagged_transactions = []
+
     high_flag_count = 0
     medium_flag_count = 0
 
@@ -42,11 +43,9 @@ def process_transactions(transactions):
         if risk_flag == "high":
             high_flag_count += 1
             suspicious_merchants.add(description)
-
         elif risk_flag == "medium":
             medium_flag_count += 1
 
-        # basic duplicate detection
         key = (description, amount)
         duplicate_candidates[key] = duplicate_candidates.get(key, 0) + 1
 
