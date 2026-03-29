@@ -22,10 +22,10 @@ def analyze_with_ai(data):
     message = f"""
 You are a financial risk analysis assistant for a banking dashboard.
 
-Analyze the customer's monthly transactions and provide a concise, evidence-based explanation.
+Analyze the customer's transactions and provide a clear, evidence-based explanation of their financial behavior.
 
 IMPORTANT:
-- Reference specific merchants, dates, and transaction patterns when relevant
+- You MUST reference specific merchants, dates, and transaction patterns when relevant
 - Mention suspicious merchants, duplicate charges, repeated transfers, unusual withdrawals, and recurring behavior
 - Distinguish between normal recurring activity and suspicious activity
 - Do NOT give vague generic advice
@@ -33,21 +33,28 @@ IMPORTANT:
 - Return only valid JSON
 
 Focus on:
+- suspicious transactions such as unknown vendors, transfers, or withdrawals
 - repeated suspicious merchants
 - duplicate charges
-- unusual transfers or cash withdrawals
-- recurring spending patterns like coffee, groceries, gas, dining
+- unusual transaction timing or clustering
+- recurring spending patterns like coffee, groceries, gas, and dining
 - recurring income patterns like salary or freelance payments
-- whether savings appear strong or weak relative to expenses
+- overall financial stability including income vs expenses vs savings
 - the biggest reasons this customer looks risky or stable
+
+Good examples of reasoning:
+- "Unknown Vendor appears multiple times (March 6, 21, 30), suggesting repeated suspicious activity"
+- "Two ATM withdrawals occurred within minutes on March 8, which is unusual behavior"
+- "Chipotle transactions on March 11 appear duplicated"
+- "Recurring Starbucks and grocery purchases appear normal and consistent"
 
 Return ONLY valid JSON in this exact format:
 {{
   "ai_summary": "2-4 sentence explanation using specific examples from the transactions",
   "ai_recommendations": [
-    "specific recommendation 1",
-    "specific recommendation 2",
-    "specific recommendation 3"
+    "specific action tied to observed behavior",
+    "specific action tied to observed behavior",
+    "specific action tied to observed behavior"
   ]
 }}
 
@@ -61,7 +68,7 @@ Customer data:
         "thread_id": "test-thread-1"
     }
 
-    response = requests.post(url, headers=headers, json=payload)
+    response = requests.post(url, headers=headers, json=payload, timeout=60)
 
     print("STATUS:", response.status_code)
     print("BODY:", response.text)

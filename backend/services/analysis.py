@@ -1,5 +1,5 @@
 def analyze_customer(data):
-    signals = []  # list of warning signs of finances
+    signals = []
     recommendations = []
     risk_level = "Low"
 
@@ -8,6 +8,8 @@ def analyze_customer(data):
     utilization = data.get("credit_utilization_percent", 0)
     savings = data.get("savings_balance", 0)
     spike = data.get("spending_spike_percent", 0)
+    high_flag_count = data.get("high_flag_count", 0)
+    medium_flag_count = data.get("medium_flag_count", 0)
 
     if income < expenses:
         signals.append("Expenses exceed income")
@@ -15,7 +17,7 @@ def analyze_customer(data):
 
     if utilization > 30:
         signals.append("Credit utilization is high")
-        recommendations.append("Pay debt")
+        recommendations.append("Pay down debt")
 
     if savings < max(expenses, 1):
         signals.append("Low savings buffer")
@@ -24,6 +26,14 @@ def analyze_customer(data):
     if spike > 20:
         signals.append("Recent spending spike")
         recommendations.append("Review unusual transactions")
+
+    if high_flag_count >= 3:
+        signals.append("Multiple high-risk transactions detected")
+        recommendations.append("Investigate suspicious transactions immediately")
+
+    elif medium_flag_count >= 3:
+        signals.append("Several medium-risk transactions detected")
+        recommendations.append("Review flagged spending patterns")
 
     if len(signals) >= 3:
         risk_level = "High"
