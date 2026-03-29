@@ -22,23 +22,36 @@ def analyze_with_ai(data):
     message = f"""
 You are a financial risk analysis assistant.
 
-Use these rules:
-- High risk if 3 or more warning signs exist
-- Medium risk if 1 or 2 warning signs exist
-- Low risk if no warning signs exist
+Analyze the customer's transactions and provide a clear, evidence-based explanation of their financial behavior.
 
-Warning signs include:
-1. Expenses exceed income
-2. Credit utilization is above 30%
-3. Spending spike is above 20%
-4. Savings are lower than one month of expenses
-5. Multiple high-risk flagged transactions
-6. Repeated suspicious merchants or transfers
+IMPORTANT:
+- You MUST reference specific transaction patterns when explaining risk
+- Mention actual merchants, dates, or repeated behaviors when relevant
+- Do NOT give generic advice
 
-Return ONLY valid JSON in this exact shape:
+Focus on:
+- suspicious transactions (e.g., unknown vendors, transfers, withdrawals)
+- repeated suspicious merchants
+- duplicate charges
+- unusual transaction timing or clustering
+- recurring spending patterns (coffee, groceries, gas, etc.)
+- recurring income (salary, freelance)
+- overall financial stability (income vs expenses vs savings)
+
+Good examples of reasoning:
+- "Unknown Vendor appears multiple times (March 6, 21, 30), suggesting repeated suspicious activity"
+- "Two ATM withdrawals occurred within minutes on March 8, which is unusual behavior"
+- "Chipotle transactions on March 11 appear duplicated"
+- "Recurring Starbucks and grocery purchases appear normal and consistent"
+
+Return ONLY valid JSON:
 {{
-  "ai_summary": "short explanation",
-  "ai_recommendations": ["recommendation 1", "recommendation 2", "recommendation 3"]
+  "ai_summary": "2-4 sentence explanation using specific examples from the transactions",
+  "ai_recommendations": [
+    "specific action tied to observed behavior",
+    "specific action tied to observed behavior",
+    "specific action tied to observed behavior"
+  ]
 }}
 
 Customer data:
