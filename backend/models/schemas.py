@@ -3,11 +3,18 @@ from typing import List, Optional
 
 
 class Transaction(BaseModel):
-    amount: float
+    date: Optional[str] = ""
+    description: Optional[str] = ""
     category: str
+    amount: float
+    type: Optional[str] = ""
+    risk_flag: Optional[str] = ""
+    reason: Optional[str] = ""
 
 
 class CustomerInput(BaseModel):
+    customer_name: Optional[str] = ""
+    month: Optional[str] = ""
     monthly_income: Optional[float] = 0
     monthly_expenses: Optional[float] = 0
     savings_balance: Optional[float] = 0

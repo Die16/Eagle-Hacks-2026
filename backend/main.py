@@ -24,14 +24,30 @@ def root():
 def analyze(input: CustomerInput):
     data = input.model_dump()
 
+    flagged_transactions = []
+
     if input.transactions:
         processed = process_transactions([t.model_dump() for t in input.transactions])
-        data.update(processed)
+        data["monthly_income"] = processed["monthly_income"]
+        data["monthly_expenses"] = processed["monthly_expenses"]
+        data["high_flag_count"] = processed["high_flag_count"]
+        data["medium_flag_count"] = processed["medium_flag_count"]
+        flagged_transactions = processed["flagged_transactions"]
 
     rule_result = analyze_customer(data)
     ai_result = analyze_with_ai(data)
 
-    rule_result["ai_summary"] = ai_result["ai_summary"]
-    rule_result["ai_recommendations"] = ai_result["ai_recommendations"]
-
-    return rule_result
+    return {
+        "customer_name": data.get("customer_name", ""),
+        "month": data.get("month", ""),
+        "monthly_income": data.get("monthly_income", 0),
+        "monthly_expenses": data.get("monthly_expenses", 0),
+        "transactions": data.get("transactions", []),
+        "flagged_transactions": flagged_transactions,
+        "riskLevel": rule_result.get("riskLevel", ""),
+        "signals": rule_result.get("signals", []),
+        "recommendations": rule_result.get("recommendations", []),
+        "summary": rule_result.get("summary", ""),
+        "ai_summary": ai_result.get("ai_summary", ""),
+        "ai_recommendations": ai_result.get("ai_recommendations", [])
+    }
