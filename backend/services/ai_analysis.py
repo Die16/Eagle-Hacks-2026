@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 from pathlib import Path
 from dotenv import load_dotenv
@@ -25,20 +26,23 @@ Use these rules:
 - High risk if 3 or more warning signs exist
 - Medium risk if 1 or 2 warning signs exist
 - Low risk if no warning signs exist
-- Warning signs include:
-  1. Expenses exceed income
-  2. Credit utilization is above 30%
-  3. Spending spike is above 20%
-  4. Savings are lower than one month of expenses
 
-Return a concise JSON response with this exact shape:
+Warning signs include:
+1. Expenses exceed income
+2. Credit utilization is above 30%
+3. Spending spike is above 20%
+4. Savings are lower than one month of expenses
+5. Multiple high-risk flagged transactions
+6. Repeated suspicious merchants or transfers
+
+Return ONLY valid JSON in this exact shape:
 {{
   "ai_summary": "short explanation",
   "ai_recommendations": ["recommendation 1", "recommendation 2", "recommendation 3"]
 }}
 
 Customer data:
-{data}
+{json.dumps(data, indent=2)}
 """.strip()
 
     payload = {
@@ -47,7 +51,7 @@ Customer data:
         "thread_id": "test-thread-1"
     }
 
-    response = requests.post(url, headers=headers, json=payload)
+    response = requests.post(url, headers=headers, json=payload, timeout=60)
 
     print("STATUS:", response.status_code)
     print("BODY:", response.text)
@@ -55,9 +59,18 @@ Customer data:
     response.raise_for_status()
 
     raw = response.json()
+    response_text = raw.get("response", "")
 
-    return {
-        "ai_summary": raw.get("response", ""),
-        "ai_recommendations": [],
-        "raw_ai_response": raw
-    }
+    try:
+        parsed = json.loads(response_text)
+        return {
+            "ai_summary": parsed.get("ai_summary", ""),
+            "ai_recommendations": parsed.get("ai_recommendations", []),
+            "raw_ai_response": raw
+        }
+    except json.JSONDecodeError:
+        return {
+            "ai_summary": response_text,
+            "ai_recommendations": [],
+            "raw_ai_response": raw
+        }
