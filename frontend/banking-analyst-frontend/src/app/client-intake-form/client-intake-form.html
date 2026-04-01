@@ -1,0 +1,65 @@
+<div class="intake-wrapper">
+
+  <div class="intake-header">
+    <div class="eyebrow">// Intelligent Banking Analyst</div>
+    <h1>Upload Client Data</h1>
+    <p>Drop your client's JSON transaction file below to begin AI-powered analysis.</p>
+  </div>
+
+  <div class="intake-card">
+
+    <!-- Drop Zone (hidden once file loaded) -->
+    <div
+      class="drop-zone"
+      [class.dragover]="isDragging"
+      [class.file-loaded]="uploadedFile !== null"
+      *ngIf="!uploadedFile"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+      (click)="fileInput.click()">
+      <div class="drop-icon">📂</div>
+      <h3>Drag & drop your file here</h3>
+      <p>or click to browse your files</p>
+      <span class="file-types">JSON</span>
+    </div>
+
+    <!-- Hidden file input -->
+    <input
+      #fileInput
+      type="file"
+      accept=".json"
+      style="display: none"
+      (change)="onFileSelected($event)"
+    />
+
+    <!-- File Loaded State -->
+    <div class="file-info" *ngIf="uploadedFile">
+      <span class="file-icon">✅</span>
+      <div class="file-details">
+        <div class="file-name">{{ uploadedFile.name }}</div>
+        <div class="file-size">{{ getFileSizeKb() }} KB &mdash; Ready for analysis</div>
+      </div>
+      <button class="remove-btn" (click)="removeFile()">✕</button>
+    </div>
+
+    <!-- Error -->
+    <div class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</div>
+
+    <!-- Submit -->
+    <div class="submit-row">
+      <button
+        class="btn-primary"
+        [disabled]="!uploadedFile || isLoading"
+        (click)="onSubmit()">
+        {{ isLoading ? 'Analyzing...' : 'Analyze My Finances' }}
+      </button>
+    </div>
+
+    <div class="loading-msg" *ngIf="isLoading">
+      Running AI analysis — this may take a few seconds...
+    </div>
+
+  </div>
+
+</div>

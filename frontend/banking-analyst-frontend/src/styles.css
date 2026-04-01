@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --sym-dark-bg:     #0a0e1a;
+  --sym-dark-card:   #111827;
+  --sym-dark-border: #1e2a3a;
+  --sym-blue:        #3b82f6;
+  --sym-blue-glow:   rgba(59, 130, 246, 0.15);
+  --sym-blue-deep:   #1d4ed8;
+  --sym-white:       #f0f4ff;
+  --sym-muted:       #6b7280;
+  --sym-success:     #10b981;
+  --sym-warning:     #f59e0b;
+  --sym-danger:      #ef4444;
+  --radius:          12px;
+  --shadow:          0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  background-color: var(--sym-dark-bg);
+  color: var(--sym-white);
+}
+
+h1, h2, h3, h4 {
+  color: var(--sym-white);
+  font-weight: 700;
+}
+
+p {
+  color: var(--sym-muted);
+  line-height: 1.6;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--sym-blue), var(--sym-blue-deep));
+  color: #fff;
+  border: none;
+  padding: 14px 36px;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px var(--sym-blue-glow);
+  letter-spacing: 0.03em;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px rgba(59, 130, 246, 0.35);
+}
+
+.btn-primary:disabled {
+  background: var(--sym-dark-border);
+  color: var(--sym-muted);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}

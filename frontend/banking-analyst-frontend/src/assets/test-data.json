@@ -1,0 +1,71 @@
+{
+  "customer_name": "Jordan Lee",
+  "transactions": [
+
+    { "date": "2026-03-01", "description": "Salary Deposit", "category": "income", "amount": 2600, "type": "income", "risk_flag": "low", "reason": "Biweekly salary" },
+    { "date": "2026-03-01", "description": "Starbucks", "category": "coffee", "amount": -7.50, "type": "expense", "risk_flag": "low", "reason": "Routine expense" },
+
+    { "date": "2026-03-02", "description": "Publix Grocery", "category": "groceries", "amount": -85.00, "type": "expense", "risk_flag": "low", "reason": "Weekly groceries" },
+
+    { "date": "2026-03-03", "description": "Freelance Payment", "category": "income", "amount": 500, "type": "income", "risk_flag": "low", "reason": "Side income" },
+
+    { "date": "2026-03-04", "description": "Shell Gas", "category": "gas", "amount": -48.00, "type": "expense", "risk_flag": "low", "reason": "Fuel purchase" },
+
+    { "date": "2026-03-05", "description": "Amazon", "category": "shopping", "amount": -130.00, "type": "expense", "risk_flag": "low", "reason": "Online purchase" },
+
+    { "date": "2026-03-06", "description": "Unknown Vendor", "category": "electronics", "amount": -240.00, "type": "expense", "risk_flag": "high", "reason": "Out-of-state late-night purchase" },
+    { "date": "2026-03-06", "description": "Unknown Vendor", "category": "electronics", "amount": -260.00, "type": "expense", "risk_flag": "high", "reason": "Rapid repeated transactions" },
+
+    { "date": "2026-03-07", "description": "Ride Share Income", "category": "income", "amount": 200, "type": "income", "risk_flag": "low", "reason": "Gig work" },
+
+    { "date": "2026-03-08", "description": "ATM Withdrawal", "category": "cash", "amount": -500.00, "type": "expense", "risk_flag": "high", "reason": "Large withdrawal in different state" },
+    { "date": "2026-03-08", "description": "ATM Withdrawal", "category": "cash", "amount": -450.00, "type": "expense", "risk_flag": "high", "reason": "Multiple withdrawals in short time" },
+
+    { "date": "2026-03-09", "description": "Dividend Income", "category": "income", "amount": 150, "type": "income", "risk_flag": "low", "reason": "Investment income" },
+
+    { "date": "2026-03-10", "description": "Publix Grocery", "category": "groceries", "amount": -78.00, "type": "expense", "risk_flag": "low", "reason": "Groceries" },
+
+    { "date": "2026-03-11", "description": "Chipotle", "category": "food", "amount": -13.00, "type": "expense", "risk_flag": "medium", "reason": "Duplicate charge suspected" },
+    { "date": "2026-03-11", "description": "Chipotle", "category": "food", "amount": -13.00, "type": "expense", "risk_flag": "medium", "reason": "Duplicate transaction" },
+
+    { "date": "2026-03-12", "description": "Rent Payment", "category": "housing", "amount": -1500.00, "type": "expense", "risk_flag": "low", "reason": "Monthly rent" },
+
+    { "date": "2026-03-13", "description": "Starbucks", "category": "coffee", "amount": -6.50, "type": "expense", "risk_flag": "low", "reason": "Routine" },
+
+    { "date": "2026-03-14", "description": "Best Buy", "category": "electronics", "amount": -300.00, "type": "expense", "risk_flag": "medium", "reason": "Higher than usual purchase" },
+
+    { "date": "2026-03-15", "description": "Salary Deposit", "category": "income", "amount": 2600, "type": "income", "risk_flag": "low", "reason": "Second paycheck" },
+
+    { "date": "2026-03-16", "description": "Dunkin", "category": "coffee", "amount": -8.25, "type": "expense", "risk_flag": "low", "reason": "Routine" },
+
+    { "date": "2026-03-17", "description": "Chevron Gas", "category": "gas", "amount": -50.00, "type": "expense", "risk_flag": "low", "reason": "Fuel" },
+
+    { "date": "2026-03-18", "description": "Unknown Transfer", "category": "transfer", "amount": -700.00, "type": "expense", "risk_flag": "high", "reason": "Large transfer to unknown account" },
+
+    { "date": "2026-03-19", "description": "Freelance Payment", "category": "income", "amount": 320, "type": "income", "risk_flag": "low", "reason": "Extra income" },
+
+    { "date": "2026-03-20", "description": "Publix Grocery", "category": "groceries", "amount": -90.00, "type": "expense", "risk_flag": "low", "reason": "Groceries" },
+
+    { "date": "2026-03-21", "description": "Unknown Vendor", "category": "electronics", "amount": -350.00, "type": "expense", "risk_flag": "high", "reason": "Suspicious repeated merchant" },
+
+    { "date": "2026-03-22", "description": "Starbucks", "category": "coffee", "amount": -10.00, "type": "expense", "risk_flag": "low", "reason": "Routine" },
+
+    { "date": "2026-03-23", "description": "Shell Gas", "category": "gas", "amount": -65.00, "type": "expense", "risk_flag": "low", "reason": "Fuel" },
+
+    { "date": "2026-03-24", "description": "Amazon", "category": "shopping", "amount": -200.00, "type": "expense", "risk_flag": "medium", "reason": "Higher than usual spending" },
+
+    { "date": "2026-03-25", "description": "Subway", "category": "food", "amount": -15.00, "type": "expense", "risk_flag": "low", "reason": "Dining" },
+
+    { "date": "2026-03-26", "description": "Unknown Transfer", "category": "transfer", "amount": -450.00, "type": "expense", "risk_flag": "high", "reason": "Repeated suspicious transfer" },
+
+    { "date": "2026-03-27", "description": "Dunkin", "category": "coffee", "amount": -6.00, "type": "expense", "risk_flag": "low", "reason": "Routine" },
+
+    { "date": "2026-03-28", "description": "Publix Grocery", "category": "groceries", "amount": -100.00, "type": "expense", "risk_flag": "low", "reason": "Groceries" },
+
+    { "date": "2026-03-29", "description": "Panera Bread", "category": "food", "amount": -25.00, "type": "expense", "risk_flag": "low", "reason": "Dining" },
+
+    { "date": "2026-03-30", "description": "Unknown Vendor", "category": "electronics", "amount": -300.00, "type": "expense", "risk_flag": "high", "reason": "Late-night suspicious purchase" }
+
+  ]
+}
+
